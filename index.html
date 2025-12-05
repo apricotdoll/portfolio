@@ -1,308 +1,285 @@
-import React, { useState } from 'react';
-import { Github, Mail, ExternalLink, Gamepad2, Code, Users } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unity Game Programmer Portfolio</title>
+    <meta name="description" content="Unity/C# ゲームプログラマーのポートフォリオサイト">
+    
+    <!-- Tailwind CSS (ビルド不要のCDN版) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- アイコン (Lucide Icons) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- カスタム設定 (フォントやカラー) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        unity: '#222c37', // Unity Editor風ダークグレー
+                        accent: '#00FFFF', // サイバーパンク風シアン
+                        accentHover: '#00CCCC',
+                    },
+                    fontFamily: {
+                        sans: ['Helvetica Neue', 'Arial', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', 'sans-serif'],
+                        mono: ['Consolas', 'Monaco', 'Courier New', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* 背景のアニメーションなど細かい調整 */
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        .glass-panel {
+            background: rgba(34, 44, 55, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .skill-badge {
+            transition: all 0.3s ease;
+        }
+        .skill-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="antialiased">
 
-export default function Portfolio() {
-  const [activeSection, setActiveSection] = useState('about');
-
-  const games = [
-    {
-      title: "アクションパズルゲーム",
-      description: "Unity + C#で制作した2Dアクションパズル。ステージクリア型で、物理演算を使ったギミックが特徴です。",
-      role: "個人制作（プログラム・企画）",
-      tech: ["Unity", "C#", "UI Toolkit"],
-      period: "2024年6月 - 8月",
-      link: "#"
-    },
-    {
-      title: "3D脱出ゲーム",
-      description: "チーム制作の3D脱出ゲーム。謎解き要素とホラー演出を組み合わせた作品です。",
-      role: "チーム制作（プログラマー担当）",
-      tech: ["Unity", "C#", "Cinemachine"],
-      period: "2024年9月 - 11月",
-      link: "#"
-    },
-    {
-      title: "横スクロールアクション",
-      description: "ドット絵風のキャラクターが冒険する2Dアクションゲーム。ステージ数は全10面。",
-      role: "個人制作（プログラム・企画）",
-      tech: ["Unity", "C#", "Animator"],
-      period: "2024年3月 - 5月",
-      link: "#"
-    },
-    {
-      title: "タワーディフェンスゲーム",
-      description: "敵の侵攻を防ぐタワーディフェンス。複数のタワーとアップグレードシステムを実装。",
-      role: "個人制作（プログラム・企画）",
-      tech: ["Unity", "C#", "NavMesh"],
-      period: "2023年11月 - 2024年1月",
-      link: "#"
-    }
-  ];
-
-  const skills = [
-    { 
-      category: "ゲームエンジン・言語", 
-      items: ["Unity", "C#", "Visual Studio"] 
-    },
-    { 
-      category: "できること", 
-      items: ["キャラクター制御", "UI実装", "当たり判定", "物理演算", "アニメーション制御", "セーブ/ロード機能"] 
-    },
-    { 
-      category: "使用経験のある機能", 
-      items: ["Animator", "Cinemachine", "NavMesh", "Particle System", "Audio Mixer"] 
-    },
-    { 
-      category: "その他", 
-      items: ["Git/GitHub", "Photoshop(基礎)", "チーム開発経験"] 
-    }
-  ];
-
-  return (
-    <div className="min-h-screen bg-gray-50">
-      {/* ヘッダー */}
-      <header className="bg-white shadow-sm sticky top-0 z-50">
-        <nav className="max-w-6xl mx-auto px-4 py-4">
-          <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold text-gray-800">佐藤 健太</h1>
-            <div className="flex gap-6">
-              <button
-                onClick={() => setActiveSection('about')}
-                className={`text-sm font-medium transition-colors ${
-                  activeSection === 'about' ? 'text-blue-600' : 'text-gray-600 hover:text-blue-600'
-                }`}
-              >
-                自己紹介
-              </button>
-              <button
-                onClick={() => setActiveSection('games')}
-                className={`text-sm font-medium transition-colors ${
-                  activeSection === 'games' ? 'text-blue-600' : 'text-gray-600 hover:text-blue-600'
-                }`}
-              >
-                制作ゲーム
-              </button>
-              <button
-                onClick={() => setActiveSection('skills')}
-                className={`text-sm font-medium transition-colors ${
-                  activeSection === 'skills' ? 'text-blue-600' : 'text-gray-600 hover:text-blue-600'
-                }`}
-              >
-                スキル
-              </button>
-              <button
-                onClick={() => setActiveSection('contact')}
-                className={`text-sm font-medium transition-colors ${
-                  activeSection === 'contact' ? 'text-blue-600' : 'text-gray-600 hover:text-blue-600'
-                }`}
-              >
-                連絡先
-              </button>
-            </div>
-          </div>
-        </nav>
-      </header>
-
-      {/* メインコンテンツ */}
-      <main className="max-w-6xl mx-auto px-4 py-12">
-        {/* 自己紹介セクション */}
-        {activeSection === 'about' && (
-          <section className="animate-fadeIn">
-            <div className="bg-white rounded-lg shadow-md p-8 mb-8">
-              <div className="flex items-start gap-8">
-                <div className="w-32 h-32 bg-gradient-to-br from-purple-500 to-blue-600 rounded-full flex items-center justify-center text-white text-4xl font-bold flex-shrink-0">
-                  SK
+    <!-- ナビゲーション -->
+    <nav class="fixed w-full z-50 glass-panel border-b border-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <span class="text-accent font-mono font-bold text-xl">&lt;DevPortfolio /&gt;</span>
                 </div>
-                <div className="flex-1">
-                  <h2 className="text-3xl font-bold text-gray-800 mb-2">佐藤 健太</h2>
-                  <p className="text-xl text-gray-600 mb-4">ゲームプログラマー志望</p>
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    ○○専門学校ゲームプログラム科で学んでいます。
-                    UnityとC#を使ったゲーム開発が得意で、プレイヤーが楽しめるゲーム作りを心がけています。
-                  </p>
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    個人制作では企画から実装まで一人で行い、チーム制作ではプログラマーとしてメンバーと協力しながら開発を進めてきました。
-                    特にキャラクター制御やゲームシステムの実装が好きです。
-                  </p>
-                  <p className="text-gray-700 leading-relaxed">
-                    ゲームを遊ぶことも作ることも大好きで、「面白い」と思ってもらえるゲーム作りを目指して日々勉強しています。
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-white rounded-lg shadow-md p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <Gamepad2 className="text-blue-600" size={24} />
-                  <h3 className="text-lg font-semibold text-gray-800">制作経験</h3>
-                </div>
-                <p className="text-gray-600">個人制作: 4本</p>
-                <p className="text-gray-600">チーム制作: 2本</p>
-              </div>
-
-              <div className="bg-white rounded-lg shadow-md p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <Code className="text-blue-600" size={24} />
-                  <h3 className="text-lg font-semibold text-gray-800">開発環境</h3>
-                </div>
-                <p className="text-gray-600">Unity 2022.3 LTS</p>
-                <p className="text-gray-600">Visual Studio 2022</p>
-              </div>
-
-              <div className="bg-white rounded-lg shadow-md p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <Users className="text-blue-600" size={24} />
-                  <h3 className="text-lg font-semibold text-gray-800">チーム開発</h3>
-                </div>
-                <p className="text-gray-600">4人チームでの制作経験</p>
-                <p className="text-gray-600">Git/GitHubでの共同開発</p>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* 制作ゲームセクション */}
-        {activeSection === 'games' && (
-          <section className="animate-fadeIn">
-            <h2 className="text-3xl font-bold text-gray-800 mb-8">制作ゲーム</h2>
-            <div className="space-y-6">
-              {games.map((game, index) => (
-                <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                  <div className="md:flex">
-                    <div className="md:w-72 h-48 md:h-auto bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center flex-shrink-0">
-                      <Gamepad2 className="text-white" size={64} />
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                        <a href="#about" class="hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                        <a href="#works" class="hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">Works</a>
+                        <a href="#contact" class="hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
                     </div>
-                    <div className="p-6 flex-1">
-                      <h3 className="text-2xl font-semibold text-gray-800 mb-2">{game.title}</h3>
-                      <p className="text-sm text-gray-500 mb-3">{game.period}</p>
-                      <p className="text-gray-700 mb-3">{game.description}</p>
-                      <p className="text-sm text-gray-600 mb-4">
-                        <span className="font-semibold">担当:</span> {game.role}
-                      </p>
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {game.tech.map((tech, i) => (
-                          <span key={i} className="px-3 py-1 bg-blue-100 text-blue-700 rounded text-sm">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                      <a
-                        href={game.link}
-                        className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium text-sm"
-                      >
-                        プレイ動画・詳細を見る <ExternalLink size={16} />
-                      </a>
-                    </div>
-                  </div>
                 </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* スキルセクション */}
-        {activeSection === 'skills' && (
-          <section className="animate-fadeIn">
-            <h2 className="text-3xl font-bold text-gray-800 mb-8">スキル</h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {skills.map((skill, index) => (
-                <div key={index} className="bg-white rounded-lg shadow-md p-6">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-4">{skill.category}</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {skill.items.map((item, i) => (
-                      <span
-                        key={i}
-                        className="px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-medium"
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
+                <!-- モバイルメニューボタン -->
+                <div class="-mr-2 flex md:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+                        <i data-lucide="menu"></i>
+                    </button>
                 </div>
-              ))}
             </div>
-
-            <div className="mt-8 bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">実装経験のある機能</h3>
-              <div className="grid md:grid-cols-2 gap-4 text-gray-700">
-                <div>
-                  <p className="mb-2">• プレイヤーキャラクターの移動・ジャンプ制御</p>
-                  <p className="mb-2">• 敵キャラクターのAI（追跡・巡回）</p>
-                  <p className="mb-2">• カメラワーク（追従・切り替え）</p>
-                  <p className="mb-2">• UI実装（タイトル・ゲーム中・リザルト画面）</p>
-                </div>
-                <div>
-                  <p className="mb-2">• データセーブ・ロード機能</p>
-                  <p className="mb-2">• パーティクルエフェクトの実装</p>
-                  <p className="mb-2">• BGM・SE管理システム</p>
-                  <p className="mb-2">• ステージ管理・シーン遷移</p>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* 連絡先セクション */}
-        {activeSection === 'contact' && (
-          <section className="animate-fadeIn">
-            <h2 className="text-3xl font-bold text-gray-800 mb-8">連絡先</h2>
-            <div className="bg-white rounded-lg shadow-md p-8 max-w-2xl mx-auto">
-              <p className="text-gray-700 mb-6 text-center">
-                ポートフォリオをご覧いただきありがとうございます。<br />
-                ご連絡は以下からお願いします。
-              </p>
-              <div className="space-y-4">
-                <a
-                  href="mailto:sato.kenta@example.com"
-                  className="flex items-center gap-4 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  <Mail className="text-blue-600" size={24} />
-                  <div>
-                    <p className="font-semibold text-gray-800">Email</p>
-                    <p className="text-gray-600">sato.kenta@example.com</p>
-                  </div>
-                </a>
-                <a
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  <Github className="text-blue-600" size={24} />
-                  <div>
-                    <p className="font-semibold text-gray-800">GitHub</p>
-                    <p className="text-gray-600">github.com/sato-kenta</p>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </section>
-        )}
-      </main>
-
-      {/* フッター */}
-      <footer className="bg-white border-t border-gray-200 mt-16">
-        <div className="max-w-6xl mx-auto px-4 py-6 text-center text-gray-600">
-          <p>&copy; 2024 佐藤 健太 Portfolio</p>
         </div>
-      </footer>
+        <!-- モバイルメニュー -->
+        <div class="hidden md:hidden bg-unity" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="text-gray-300 hover:text-accent block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#about" class="text-gray-300 hover:text-accent block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#works" class="text-gray-300 hover:text-accent block px-3 py-2 rounded-md text-base font-medium">Works</a>
+                <a href="#contact" class="text-gray-300 hover:text-accent block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
 
-      <style jsx>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fadeIn {
-          animation: fadeIn 0.5s ease-out;
-        }
-      `}</style>
-    </div>
-  );
-}
+    <!-- ヒーローセクション -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
+        <!-- 背景装飾 -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-[-1]">
+            <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-accent/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="text-center px-4 max-w-4xl mx-auto">
+            <p class="text-accent font-mono mb-4">Hello, World!</p>
+            <h1 class="text-4xl md:text-7xl font-bold mb-6 tracking-tight">
+                Unity Game Programmer
+            </h1>
+            <p class="text-gray-400 text-lg md:text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
+                専門学校2年生。C#を用いた「触り心地の良い」アクションゲームの実装が得意です。<br>
+                最適化と可読性の高いコードを意識して開発しています。
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#works" class="bg-accent text-black font-bold py-3 px-8 rounded-full hover:bg-accentHover transition-transform hover:scale-105 flex items-center justify-center gap-2">
+                    <i data-lucide="gamepad-2"></i> 作品を見る
+                </a>
+                <a href="https://github.com/yourusername" target="_blank" class="border border-gray-600 hover:border-accent text-white py-3 px-8 rounded-full hover:bg-gray-800 transition-colors flex items-center justify-center gap-2">
+                    <i data-lucide="github"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- プロフィールセクション -->
+    <section id="about" class="py-20 bg-unity/30">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                <!-- プロフィール画像エリア（必要なければ削除可） -->
+                <div class="w-48 h-48 md:w-64 md:h-64 flex-shrink-0 rounded-full overflow-hidden border-4 border-gray-700 shadow-xl relative">
+                    <!-- ここに自分の写真を入れる -->
+                    <img src="https://placehold.co/400x400/222222/00FFFF?text=Me" alt="Profile" class="w-full h-full object-cover">
+                </div>
+
+                <div class="flex-1">
+                    <h2 class="text-3xl font-bold mb-6 border-l-4 border-accent pl-4">About Me</h2>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        福岡のゲーム専門学校で2年間、ゲームプログラミングを専攻しています。<br>
+                        UnityとC#を用いたゲーム開発に没頭しており、特に「プレイヤーキャラクターの挙動制御」や「AIロジックの実装」に興味があります。<br>
+                        チーム制作ではリードプログラマーとして、Gitを用いたバージョン管理や設計を担当しました。
+                    </p>
+                    
+                    <h3 class="text-xl font-bold mb-4 text-white">Technical Skills</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <span class="text-sm text-gray-400 mb-1 block">Languages & Engines</span>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-badge px-3 py-1 bg-blue-900/50 text-blue-200 border border-blue-700/50 rounded text-sm font-mono">C#</span>
+                                <span class="skill-badge px-3 py-1 bg-gray-700/50 text-gray-200 border border-gray-600/50 rounded text-sm font-mono">Unity</span>
+                                <span class="skill-badge px-3 py-1 bg-purple-900/50 text-purple-200 border border-purple-700/50 rounded text-sm font-mono">HLSL (Shader Graph)</span>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="text-sm text-gray-400 mb-1 block">Tools & Others</span>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-badge px-3 py-1 bg-gray-800 text-gray-300 border border-gray-700 rounded text-sm font-mono">Git / GitHub</span>
+                                <span class="skill-badge px-3 py-1 bg-gray-800 text-gray-300 border border-gray-700 rounded text-sm font-mono">Visual Studio</span>
+                                <span class="skill-badge px-3 py-1 bg-gray-800 text-gray-300 border border-gray-700 rounded text-sm font-mono">Notion</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品紹介セクション -->
+    <section id="works" class="py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold mb-12 text-center">My Works</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- 作品1 -->
+                <article class="glass-panel rounded-xl overflow-hidden hover:border-accent/50 transition-colors group">
+                    <div class="relative h-48 overflow-hidden">
+                        <!-- 作品のスクリーンショット -->
+                        <img src="https://placehold.co/600x400/111111/00FFFF?text=Action+Game" alt="Game Screenshot" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-2 right-2 bg-black/70 px-2 py-1 rounded text-xs font-mono text-accent">PC / Action</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-accent transition-colors">Neon Slasher</h3>
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-3">
+                            ハイスピードな2Dアクションゲーム。Input Systemを用いた入力処理の最適化と、ステートマシンによるプレイヤー制御の実装に注力しました。
+                        </p>
+                        <div class="mb-4 flex flex-wrap gap-2">
+                            <span class="text-xs bg-gray-800 px-2 py-1 rounded text-gray-300">Unity</span>
+                            <span class="text-xs bg-gray-800 px-2 py-1 rounded text-gray-300">C#</span>
+                            <span class="text-xs bg-gray-800 px-2 py-1 rounded text-gray-300">3ヶ月</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="#" class="flex-1 text-center py-2 bg-gray-700 hover:bg-gray-600 rounded text-sm font-medium transition-colors flex items-center justify-center gap-1">
+                                <i data-lucide="github" class="w-4 h-4"></i> GitHub
+                            </a>
+                            <a href="#" class="flex-1 text-center py-2 bg-accent/10 hover:bg-accent/20 text-accent rounded text-sm font-medium transition-colors flex items-center justify-center gap-1">
+                                <i data-lucide="play" class="w-4 h-4"></i> Demo
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 作品2 -->
+                <article class="glass-panel rounded-xl overflow-hidden hover:border-accent/50 transition-colors group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://placehold.co/600x400/111111/FF00FF?text=Puzzle+Game" alt="Game Screenshot" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-2 right-2 bg-black/70 px-2 py-1 rounded text-xs font-mono text-accent">Smartphone</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-accent transition-colors">Gravity Puzzle</h3>
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-3">
+                            重力を操作してゴールを目指す3Dパズル。Physicsの挙動をスクリプトで制御し、独自の重力システムを構築しました。
+                        </p>
+                        <div class="mb-4 flex flex-wrap gap-2">
+                            <span class="text-xs bg-gray-800 px-2 py-1 rounded text-gray-300">Unity</span>
+                            <span class="text-xs bg-gray-800 px-2 py-1 rounded text-gray-300">C#</span>
+                            <span class="text-xs bg-gray-800 px-2 py-1 rounded text-gray-300">1ヶ月</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="#" class="flex-1 text-center py-2 bg-gray-700 hover:bg-gray-600 rounded text-sm font-medium transition-colors flex items-center justify-center gap-1">
+                                <i data-lucide="github" class="w-4 h-4"></i> GitHub
+                            </a>
+                            <a href="#" class="flex-1 text-center py-2 bg-accent/10 hover:bg-accent/20 text-accent rounded text-sm font-medium transition-colors flex items-center justify-center gap-1">
+                                <i data-lucide="youtube" class="w-4 h-4"></i> Video
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 作品3 -->
+                <article class="glass-panel rounded-xl overflow-hidden hover:border-accent/50 transition-colors group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://placehold.co/600x400/111111/FFFF00?text=Team+Project" alt="Game Screenshot" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-2 right-2 bg-black/70 px-2 py-1 rounded text-xs font-mono text-accent">Team Dev</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-accent transition-colors">Dungeon Coop</h3>
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-3">
+                            3人のチーム制作。メインプログラマーとして敵AI（Behavior Tree）とUI管理システムを担当。ScriptableObjectを活用したデータ管理を行いました。
+                        </p>
+                        <div class="mb-4 flex flex-wrap gap-2">
+                            <span class="text-xs bg-gray-800 px-2 py-1 rounded text-gray-300">Unity</span>
+                            <span class="text-xs bg-gray-800 px-2 py-1 rounded text-gray-300">チーム制作</span>
+                            <span class="text-xs bg-gray-800 px-2 py-1 rounded text-gray-300">C#</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="#" class="flex-1 text-center py-2 bg-gray-700 hover:bg-gray-600 rounded text-sm font-medium transition-colors flex items-center justify-center gap-1">
+                                <i data-lucide="github" class="w-4 h-4"></i> GitHub
+                            </a>
+                            <a href="#" class="flex-1 text-center py-2 bg-accent/10 hover:bg-accent/20 text-accent rounded text-sm font-medium transition-colors flex items-center justify-center gap-1">
+                                <i data-lucide="play" class="w-4 h-4"></i> Detail
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer id="contact" class="bg-black/50 border-t border-gray-800 pt-16 pb-8">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-2xl font-bold mb-8">Contact</h2>
+            <p class="text-gray-400 mb-8">
+                ポートフォリオをご覧いただきありがとうございます。<br>
+                ご連絡はメール、またはSNSのDMよりお願いいたします。
+            </p>
+            
+            <div class="flex justify-center gap-6 mb-12">
+                <a href="mailto:your.email@example.com" class="w-12 h-12 rounded-full bg-gray-800 hover:bg-accent hover:text-black flex items-center justify-center transition-all hover:-translate-y-1">
+                    <i data-lucide="mail"></i>
+                </a>
+                <a href="https://github.com" target="_blank" class="w-12 h-12 rounded-full bg-gray-800 hover:bg-accent hover:text-black flex items-center justify-center transition-all hover:-translate-y-1">
+                    <i data-lucide="github"></i>
+                </a>
+                <a href="https://twitter.com" target="_blank" class="w-12 h-12 rounded-full bg-gray-800 hover:bg-accent hover:text-black flex items-center justify-center transition-all hover:-translate-y-1">
+                    <i data-lucide="twitter"></i>
+                </a>
+            </div>
+            
+            <p class="text-gray-600 text-sm">
+                &copy; 2025 Game Programmer Portfolio. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- アイコンの初期化 -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
